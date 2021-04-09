@@ -20,6 +20,7 @@
 		58924AA7261FF1A400A97E8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58924A88261FD77E00A97E8A /* Assets.xcassets */; };
 		58924AB5261FF1D800A97E8A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58924AB4261FF1D800A97E8A /* ViewController.m */; };
 		58C0776826201550007BB67B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58924A85261FD77D00A97E8A /* Main.storyboard */; };
+		58E1229E2620AED40072E3F5 /* EZCropExample_OC.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58E1229D2620AED30072E3F5 /* EZCropExample_OC.plist */; };
 		58E3DAEC261FF8AE0090C087 /* Main_OC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58E3DAEB261FF8AE0090C087 /* Main_OC.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -34,10 +35,10 @@
 		58924A8D261FD77E00A97E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58924A94261FD79300A97E8A /* EZCropController */ = {isa = PBXFileReference; lastKnownFileType = folder; name = EZCropController; path = ..; sourceTree = "<group>"; };
 		58924AAC261FF1A400A97E8A /* EZCropExample_OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZCropExample_OC.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		58924AAD261FF1A400A97E8A /* EZCropExample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "EZCropExample copy-Info.plist"; path = "/Users/xli2/Desktop/InterProCode/EZCropController/EZCropExample/EZCropExample copy-Info.plist"; sourceTree = "<absolute>"; };
 		58924AB2261FF1D800A97E8A /* EZCropExample_OC-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EZCropExample_OC-Bridging-Header.h"; sourceTree = "<group>"; };
 		58924AB3261FF1D800A97E8A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		58924AB4261FF1D800A97E8A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		58E1229D2620AED30072E3F5 /* EZCropExample_OC.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EZCropExample_OC.plist; sourceTree = "<group>"; };
 		58E3DAEB261FF8AE0090C087 /* Main_OC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_OC.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,11 +114,11 @@
 		58924A9C261FF16A00A97E8A /* OC_Example */ = {
 			isa = PBXGroup;
 			children = (
+				58E1229D2620AED30072E3F5 /* EZCropExample_OC.plist */,
 				58924AB3261FF1D800A97E8A /* ViewController.h */,
 				58924AB4261FF1D800A97E8A /* ViewController.m */,
 				58924AB2261FF1D800A97E8A /* EZCropExample_OC-Bridging-Header.h */,
 				58E3DAEB261FF8AE0090C087 /* Main_OC.storyboard */,
-				58924AAD261FF1A400A97E8A /* EZCropExample copy-Info.plist */,
 			);
 			path = OC_Example;
 			sourceTree = "<group>";
@@ -216,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58E1229E2620AED40072E3F5 /* EZCropExample_OC.plist in Resources */,
 				58924AA6261FF1A400A97E8A /* LaunchScreen.storyboard in Resources */,
 				58924AA7261FF1A400A97E8A /* Assets.xcassets in Resources */,
 				58E3DAEC261FF8AE0090C087 /* Main_OC.storyboard in Resources */,
@@ -390,7 +392,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DS2798LUN3;
-				INFOPLIST_FILE = EZCropExample/Info.plist;
+				INFOPLIST_FILE = EZCropExample/swiftExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -410,7 +412,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DS2798LUN3;
-				INFOPLIST_FILE = EZCropExample/Info.plist;
+				INFOPLIST_FILE = EZCropExample/swiftExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -431,7 +433,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DS2798LUN3;
-				INFOPLIST_FILE = "EZCropExample copy-Info.plist";
+				INFOPLIST_FILE = EZCropExample/OC_Example/EZCropExample_OC.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -454,7 +456,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DS2798LUN3;
-				INFOPLIST_FILE = "EZCropExample copy-Info.plist";
+				INFOPLIST_FILE = EZCropExample/OC_Example/EZCropExample_OC.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
