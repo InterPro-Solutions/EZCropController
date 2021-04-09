@@ -3,3 +3,6 @@
 /Packages
 /*.xcodeproj
 xcuserdata/
+*.xcworkspacedata
+EZCropExample/EZCropExample.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+EZCropExample/EZCropExample.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
