@@ -13,7 +13,6 @@
 @property (nonatomic, strong) UIImage *image;           // The image we'll be cropping
 @property (nonatomic, strong) UIImageView *imageView;   // The image view to present the cropped image
 
-//@property (nonatomic, assign) TOCropViewCroppingStyle croppingStyle; //The cropping style
 @property (nonatomic, assign) CGRect croppedFrame;
 @property (nonatomic, assign) EZCropRotation angle;
 
@@ -142,7 +141,7 @@
 #pragma mark - View Creation/Lifecycle -
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"TOCropViewController", @"");
+    self.title = NSLocalizedString(@"EZCropController", @"");
 
     self.navigationController.navigationBar.translucent = NO;
 

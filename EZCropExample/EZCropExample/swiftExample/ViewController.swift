@@ -10,58 +10,18 @@ import EZCropController
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-
-
     private let imageView = UIImageView()
-
     private var image: UIImage?
 
     private var croppedRect = CGRect.zero
     private var croppedAngle : EZCropRotation = .zero
-    /*public override var shouldAutorotate: Bool {
-        if let presentedController = self.presentedViewController {
-            return presentedController.shouldAutorotate
-        }
-        else {
-            return true
-        }
-    }*/
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = (info[UIImagePickerController.InfoKey.originalImage] as? UIImage) else { return }
         self.shouldAutorotate
         let cropController =  EZCropController(image:image) //CropViewController(croppingStyle: croppingStyle, image: image)
         //cropController.modalPresentationStyle = .fullScreen
         cropController.delegate = self
-
-        // Uncomment this if you wish to provide extra instructions via a title label
-        //cropController.title = "Crop Image"
-
-        // -- Uncomment these if you want to test out restoring to a previous crop setting --
-        //cropController.angle = 90 // The initial angle in which the image will be rotated
-        //cropController.imageCropFrame = CGRect(x: 0, y: 0, width: 2848, height: 4288) //The initial frame that the crop controller will have visible.
-
-        // -- Uncomment the following lines of code to test out the aspect ratio features --
-        //cropController.aspectRatioPreset = .presetSquare; //Set the initial aspect ratio as a square
-        //cropController.aspectRatioLockEnabled = true // The crop box is locked to the aspect ratio and can't be resized away from it
-        //cropController.resetAspectRatioEnabled = false // When tapping 'reset', the aspect ratio will NOT be reset back to default
-        //cropController.aspectRatioPickerButtonHidden = true
-
-        // -- Uncomment this line of code to place the toolbar at the top of the view controller --
-        //cropController.toolbarPosition = .top
-
-        //cropController.rotateButtonsHidden = true
-        //cropController.rotateClockwiseButtonHidden = true
-
-        //cropController.doneButtonTitle = "Title"
-        //cropController.cancelButtonTitle = "Title"
-
-        //cropController.toolbar.doneButtonHidden = true
-        //cropController.toolbar.cancelButtonHidden = true
-        //cropController.toolbar.clampButtonHidden = true
-
-        // Set toolbar action button colors
-        // cropController.doneButtonColor = UIColor.red
-        // cropController.cancelButtonColor = UIColor.green
 
         self.image = image
 
@@ -72,18 +32,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             //self.navigationController!.pushViewController(cropController, animated: true)
         })
     }
-
-    /*public func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        self.croppedRect = cropRect
-        self.croppedAngle = angle
-        updateImageViewWithImage(image, fromCropViewController: cropViewController)
-    }
-
-    public func cropViewController(_ cropViewController: CropViewController, didCropToCircularImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        self.croppedRect = cropRect
-        self.croppedAngle = angle
-        updateImageViewWithImage(image, fromCropViewController: cropViewController)
-    }*/
 
     public func updateImageViewWithImage(_ image: UIImage, fromCropViewController cropViewController: EZCropController) {
         imageView.image = image

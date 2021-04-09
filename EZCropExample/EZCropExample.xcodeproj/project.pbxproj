@@ -68,7 +68,6 @@
 				58924A7E261FD77D00A97E8A /* EZCropExample */,
 				58924A7D261FD77D00A97E8A /* Products */,
 				58924A96261FEB2800A97E8A /* Frameworks */,
-				58924AAD261FF1A400A97E8A /* EZCropExample copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,7 +90,6 @@
 				58924A85261FD77D00A97E8A /* Main.storyboard */,
 				58924A88261FD77E00A97E8A /* Assets.xcassets */,
 				58924A8A261FD77E00A97E8A /* LaunchScreen.storyboard */,
-				58924A8D261FD77E00A97E8A /* Info.plist */,
 			);
 			path = EZCropExample;
 			sourceTree = "<group>";
@@ -107,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				58924A83261FD77D00A97E8A /* ViewController.swift */,
+				58924A8D261FD77E00A97E8A /* Info.plist */,
 			);
 			path = swiftExample;
 			sourceTree = "<group>";
@@ -118,6 +117,7 @@
 				58924AB4261FF1D800A97E8A /* ViewController.m */,
 				58924AB2261FF1D800A97E8A /* EZCropExample_OC-Bridging-Header.h */,
 				58E3DAEB261FF8AE0090C087 /* Main_OC.storyboard */,
+				58924AAD261FF1A400A97E8A /* EZCropExample copy-Info.plist */,
 			);
 			path = OC_Example;
 			sourceTree = "<group>";
