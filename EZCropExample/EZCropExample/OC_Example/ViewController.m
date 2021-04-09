@@ -30,6 +30,7 @@
     [picker dismissViewControllerAnimated:YES completion:^{
         EZCropController *cropController = [[EZCropController alloc] initWithImage:image];
         cropController.delegate = self;
+        [UIViewController swizzleShouldAutorotate];
         [self presentViewController:cropController animated:YES completion:nil];
     }];
 }
@@ -47,13 +48,16 @@
                                                                       cropRect:self.croppedFrame
                                                                          angle:self.angle];
     cropController.delegate = self;
+    [UIViewController swizzleShouldAutorotate];
     [self presentViewController:cropController animated:YES completion:nil];
 }
 
 #pragma mark - Cropper Delegate -
 
 - (void)cropViewControllerCancel:(EZCropController * _Nonnull)cropViewController {
-    [cropViewController dismissViewControllerAnimated:YES completion:nil];
+    [cropViewController dismissViewControllerAnimated:YES completion:^{
+        [UIViewController swizzleShouldAutorotate];
+    }];
 }
 
 - (void)cropViewController:(EZCropController *)cropViewController didCropTo:(UIImage *)image with:(CGRect)cropRect angle:(enum EZCropRotation)angle
@@ -73,7 +77,9 @@
     self.navigationItem.rightBarButtonItem.enabled = YES;
 
     self.imageView.hidden = NO;
-    [cropViewController dismissViewControllerAnimated:YES completion:nil];
+    [cropViewController dismissViewControllerAnimated:YES completion:^{
+        [UIViewController swizzleShouldAutorotate];
+    }];
 }
 
 #pragma mark - Image Layout -

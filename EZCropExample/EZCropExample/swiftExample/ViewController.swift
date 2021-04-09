@@ -67,6 +67,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         //If profile picture, push onto the same navigation stack
         picker.dismiss(animated: true, completion: {
+            UIViewController.swizzleShouldAutorotate()
             self.present(cropController, animated: true, completion: nil)
             //self.navigationController!.pushViewController(cropController, animated: true)
         })
@@ -91,7 +92,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.navigationItem.leftBarButtonItem?.isEnabled = true
 
         self.imageView.isHidden = false
-        cropViewController.dismiss(animated: true, completion: nil)
+        cropViewController.dismiss(animated: true, completion: {
+            UIViewController.swizzleShouldAutorotate()
+        })
     }
 
     override func viewDidLoad() {
@@ -132,19 +135,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // When tapping the image view, restore the image to the previous cropping state
         let cropViewController = EZCropController(image: self.image!, cropRect: self.croppedRect, angle: self.croppedAngle)
         cropViewController.delegate = self
+        UIViewController.swizzleShouldAutorotate()
         self.present(cropViewController, animated: true, completion: nil)
-        //let cropViewController = CropViewController(croppingStyle: self.croppingStyle, image: self.image!)
-        //cropViewController.delegate = self
-       // let viewFrame = view.convert(imageView.frame, to: navigationController!.view)
-
-        /*cropViewController.presentAnimatedFrom(self,
-                                               fromImage: self.imageView.image,
-                                               fromView: nil,
-                                               fromFrame: viewFrame,
-                                               angle: self.croppedAngle,
-                                               toImageFrame: self.croppedRect,
-                                               setup: { self.imageView.isHidden = true },
-                                               completion: nil)*/
     }
 
     public override func viewDidLayoutSubviews() {
@@ -191,7 +183,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 extension ViewController :  EZCropControllerDelegate{
     func cropViewControllerCancel(_ cropViewController: EZCropController) {
-        cropViewController.dismiss(animated: true, completion: nil)
+        cropViewController.dismiss(animated: true, completion: {
+            UIViewController.swizzleShouldAutorotate()
+        })
     }
 
     internal func cropViewController(_ cropViewController: EZCropController, didCropTo image: UIImage, with cropRect: CGRect, angle: EZCropRotation) {
