@@ -15,7 +15,7 @@ open class EZCropAbstractToolbar : UIView {
     @objc open var verticalWidth : CGFloat {
         44
     }
-    @objc public internal(set) var cropController       : EZCropController!
+    @objc public internal(set) weak var cropController       : EZCropController!
     @objc public internal(set) var verticalLayouts      = [NSLayoutConstraint]()
     @objc public internal(set) var horizontalLayouts    = [NSLayoutConstraint]()
     @objc public internal(set) var rotatedButtonTapped  :((Bool)->Void)?
