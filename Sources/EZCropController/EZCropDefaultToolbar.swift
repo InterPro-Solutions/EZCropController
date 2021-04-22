@@ -8,6 +8,12 @@
 import UIKit
 
 internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
+    @objc override var horizontalHeight : CGFloat {
+        44
+    }
+    @objc override var verticalWidth : CGFloat {
+        60
+    }
     internal override func containerView() -> UIView {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -28,7 +34,7 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
         if #available(iOS 13.0, *) {
             rotateCountClockwiseButton.setImage(UIImage(systemName: "rotate.left.fill"), for: .normal)
         } else {
-            // Fallback on earlier versions
+            rotateCountClockwiseButton.setImage(UIImage(named: "Rotate Left Fill",in: Bundle.module, compatibleWith: nil)!, for: .normal)
         }
         rotateCountClockwiseButton.addTarget(self, action: #selector(rotateCounterClockwise), for: .touchUpInside)
         rotateCountClockwiseButton.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +44,7 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
         if #available(iOS 13.0, *) {
             rotateClockwiseButton.setImage(UIImage(systemName: "rotate.right.fill"), for: .normal)
         } else {
+            rotateClockwiseButton.setImage(UIImage(named: "Rotate Right Fill",in: Bundle.module, compatibleWith: nil)!, for: .normal)
             // Fallback on earlier versions
         }
         rotateClockwiseButton.addTarget(self, action: #selector(rotateClockwise), for: .touchUpInside)
@@ -48,7 +55,7 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
         if #available(iOS 13.0, *) {
             ratioButton.setImage(UIImage(systemName: "aspectratio.fill"), for: .normal)
         } else {
-            // Fallback on earlier versions
+            ratioButton.setImage(UIImage(named: "Aspectratio Fill",in: Bundle.module, compatibleWith: nil)!, for: .normal)
         }
         ratioButton.addTarget(self, action: #selector(modifiedRatio), for: .touchUpInside)
         ratioButton.translatesAutoresizingMaskIntoConstraints = false
@@ -64,8 +71,14 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
             cancelButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             resetButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             rotateCountClockwiseButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            rotateCountClockwiseButton.widthAnchor.constraint(equalToConstant: 22),
+            rotateCountClockwiseButton.heightAnchor.constraint(equalToConstant: 22),
             rotateClockwiseButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            rotateClockwiseButton.widthAnchor.constraint(equalToConstant: 22),
+            rotateClockwiseButton.heightAnchor.constraint(equalToConstant: 22),
             ratioButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            ratioButton.widthAnchor.constraint(equalToConstant: 22),
+            ratioButton.heightAnchor.constraint(equalToConstant: 22),
             doneButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
 
             cancelButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
@@ -80,8 +93,14 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
             cancelButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             resetButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             rotateCountClockwiseButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            rotateCountClockwiseButton.widthAnchor.constraint(equalToConstant: 22),
+            rotateCountClockwiseButton.heightAnchor.constraint(equalToConstant: 22),
             rotateClockwiseButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            rotateClockwiseButton.widthAnchor.constraint(equalToConstant: 22),
+            rotateClockwiseButton.heightAnchor.constraint(equalToConstant: 22),
             ratioButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            ratioButton.widthAnchor.constraint(equalToConstant: 22),
+            ratioButton.heightAnchor.constraint(equalToConstant: 22),
             doneButton.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
 
             cancelButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),

@@ -18,7 +18,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = (info[UIImagePickerController.InfoKey.originalImage] as? UIImage) else { return }
-        self.shouldAutorotate
         let cropController =  EZCropController(image:image) //CropViewController(croppingStyle: croppingStyle, image: image)
         //cropController.modalPresentationStyle = .fullScreen
         cropController.delegate = self

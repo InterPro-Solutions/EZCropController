@@ -88,7 +88,7 @@ public final class EZCropController : UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
+        self.view.clipsToBounds = true
         self.view.backgroundColor = .black
         self.view.addSubview(cropView)
         self.cropView.translatesAutoresizingMaskIntoConstraints = false
