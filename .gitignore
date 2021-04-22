@@ -7,3 +7,5 @@ xcuserdata/
 EZCropExample/EZCropExample.xcodeproj/project.xcworkspace/contents.xcworkspacedata
 EZCropExample/EZCropExample.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 *.xcscheme
+/EZCropExample/Build
+/EZCropExample/DerivedData
