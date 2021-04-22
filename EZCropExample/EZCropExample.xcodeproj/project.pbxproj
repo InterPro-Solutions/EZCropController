@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		58924A7C261FD77D00A97E8A /* EZCropExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZCropExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		58924A7C261FD77D00A97E8A /* EZCropExample_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZCropExample_Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58924A7F261FD77D00A97E8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58924A81261FD77D00A97E8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		58924A83261FD77D00A97E8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +75,7 @@
 		58924A7D261FD77D00A97E8A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				58924A7C261FD77D00A97E8A /* EZCropExample.app */,
+				58924A7C261FD77D00A97E8A /* EZCropExample_Swift.app */,
 				58924AAC261FF1A400A97E8A /* EZCropExample_OC.app */,
 			);
 			name = Products;
@@ -126,9 +126,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58924A7B261FD77D00A97E8A /* EZCropExample */ = {
+		58924A7B261FD77D00A97E8A /* EZCropExample_Swift */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58924A90261FD77E00A97E8A /* Build configuration list for PBXNativeTarget "EZCropExample" */;
+			buildConfigurationList = 58924A90261FD77E00A97E8A /* Build configuration list for PBXNativeTarget "EZCropExample_Swift" */;
 			buildPhases = (
 				58924A78261FD77D00A97E8A /* Sources */,
 				58924A79261FD77D00A97E8A /* Frameworks */,
@@ -138,12 +138,12 @@
 			);
 			dependencies = (
 			);
-			name = EZCropExample;
+			name = EZCropExample_Swift;
 			packageProductDependencies = (
 				58924A97261FEB2800A97E8A /* EZCropController */,
 			);
 			productName = EZCropExample;
-			productReference = 58924A7C261FD77D00A97E8A /* EZCropExample.app */;
+			productReference = 58924A7C261FD77D00A97E8A /* EZCropExample_Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
 		58924A9D261FF1A400A97E8A /* EZCropExample_OC */ = {
@@ -196,7 +196,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58924A7B261FD77D00A97E8A /* EZCropExample */,
+				58924A7B261FD77D00A97E8A /* EZCropExample_Swift */,
 				58924A9D261FF1A400A97E8A /* EZCropExample_OC */,
 			);
 		};
@@ -482,7 +482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58924A90261FD77E00A97E8A /* Build configuration list for PBXNativeTarget "EZCropExample" */ = {
+		58924A90261FD77E00A97E8A /* Build configuration list for PBXNativeTarget "EZCropExample_Swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58924A91261FD77E00A97E8A /* Debug */,
