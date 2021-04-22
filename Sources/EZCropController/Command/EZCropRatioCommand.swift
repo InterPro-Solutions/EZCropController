@@ -27,12 +27,7 @@ internal final class EZCropRatioCommand : CommandProtocol {
         animating = true
         self.cropView.isUserInteractionEnabled = true
         self.cropView.backgroundContainer.setContentOffset(self.cropView.backgroundContainer.contentOffset, animated: false)
-        //self.cropView.hideSubView(true)
-        if #available(iOS 13.0, *) {
-            self.processor.setRotateCropViewWithOrientationEnable(false)
-        } else {
-            fatalError("need implemented under ios 13")
-        }
+        self.processor.setRotateCropViewWithOrientationEnable(false)
 
         let adjustedContentInsets = self.cropView.adjustedContentInsets
         var safeDrawableRect = self.cropView.overlay.bounds.inset(by: adjustedContentInsets)
@@ -71,7 +66,6 @@ internal final class EZCropRatioCommand : CommandProtocol {
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.5)
         CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: .linear))
-        //CATransaction.setAnimationTimingFunction(CAMediaTimingFunction(name: ))
         UIView.animate(withDuration: 0.5, animations: {
             [weak self] in
             guard let self = self else {return}

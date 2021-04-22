@@ -126,8 +126,21 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
         self.rotatedButtonTapped?(true)
     }
 
-    @objc internal  func modifiedRatio(){
-        let croppedRect = self._processor.cropView.imageCropFrame
+    @objc internal  func modifiedRatio(_ sender:UIButton){
+        if sender.isSelected == false {
+            sender.isSelected = true
+            self.processor.isLockAspectRatioEnable = true
+            let ratioView = EZCropRatioAccessoryVIew()
+            ratioView._processor = self.processor
+            self.showAccessoryView?(ratioView)
+        }
+        else {
+            self.processor.isLockAspectRatioEnable = true
+            sender.isSelected = false
+            self.hiddenAccessoryView?()
+        }
+
+        /*let croppedRect = self._processor.cropView.imageCropFrame
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         if croppedRect.width < croppedRect.height{
             alert.addAction(UIAlertAction(title: "Square", style: .default, handler: {
@@ -217,7 +230,7 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
         }
 
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.cropController.present(alert, animated: true, completion: nil)
+        self.cropController.present(alert, animated: true, completion: nil)*/
        /* let view = UIView()
         self.showAccessoryView?(view)*/
     }

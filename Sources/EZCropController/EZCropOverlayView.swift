@@ -14,7 +14,7 @@ public class EZCropOverlayView : UIView, CAAnimationDelegate{
     public static let cornerWidth : CGFloat = 4
     private var cropBoxLayer : EZCropOverlayLayer
     private var animationCompletion:((Bool)->Void)?
-    @objc public var cropBoxFrame : CGRect  {
+    @objc dynamic public var cropBoxFrame : CGRect  {
         set (value){
             self.cropBoxLayer.cropBoxFrame = value
             self.cropBoxLayer.setNeedsDisplay()

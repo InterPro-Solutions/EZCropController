@@ -1,20 +1,13 @@
 //
-//  EZCropAbstractToolbar.swift
+//  File.swift
 //  
 //
-//  Created by Xiang Li on 4/5/21.
+//  Created by Xiang Li on 4/22/21.
 //
 
 import UIKit
 
-open class EZCropAbstractToolbar : UIView {
-    @objc public internal(set) var rotatedButtonTapped  :((Bool)->Void)?
-    @objc public internal(set) var showAccessoryView    :((EZCropAbstractAccessoryView)->Void)?
-    @objc public internal(set) var hiddenAccessoryView  :(()->Void)?
-    @objc public internal(set) var setRatio             :((CGFloat)->Void)?
-    @objc public internal(set) var resetButtonTapped    :(()->Void)?
-    @objc public internal(set) var cancelTapped         :(()->Void)?
-    @objc public internal(set) var doneTapped           :(()->Void)?
+open class EZCropAbstractAccessoryView : UIView{
 
     @objc open var horizontalHeight : CGFloat {
         44
@@ -124,14 +117,15 @@ open class EZCropAbstractToolbar : UIView {
         self.privateBackgroundViewHorizontalLayouts = [
             self._backgroundView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
             self._backgroundView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
-            self._backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self._backgroundView.topAnchor.constraint(equalTo: superview.topAnchor),
+            self._backgroundView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
+            self._backgroundView.topAnchor.constraint(equalTo: self.topAnchor),
         ]
         self.privateBackgroundViewVerticalLayouts = [
-            self._backgroundView.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            self._backgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self._backgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self._backgroundView.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
             self._backgroundView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
             self._backgroundView.topAnchor.constraint(equalTo: superview.topAnchor),
         ]
     }
+
 }

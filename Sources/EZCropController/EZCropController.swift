@@ -21,7 +21,10 @@ public final class EZCropController : UIViewController {
     private let commandProcessor : EZCropProcessor
     private var toolbarVerticalLayouts : [NSLayoutConstraint]!
     private var toolbarHorizontalLayouts : [NSLayoutConstraint]!
-    
+
+    private var accessoryBar : EZCropAbstractAccessoryView?
+    private var accessoryViewVerticalLayouts : [NSLayoutConstraint]?
+    private var accessoryViewHorizontalLayouts : [NSLayoutConstraint]?
 
     public override var shouldAutorotate: Bool {
         print("\(commandProcessor.isRotateCropViewWithOrientationEnable)")
@@ -122,7 +125,95 @@ public final class EZCropController : UIViewController {
         toolbar.showAccessoryView = {
             [weak self] accessoryview in
             guard let self = self else {return}
+            self.accessoryBar = accessoryview
+            accessoryview.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(accessoryview)
+            self.accessoryViewHorizontalLayouts = [
+                accessoryview.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+                accessoryview.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+                accessoryview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+
+            ]
+            self.accessoryViewVerticalLayouts = [
+                accessoryview.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+                accessoryview.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                accessoryview.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            ]
+
+            if self.view.bounds.width > self.view.bounds.height {
+                if
+                    let accessoryBar = self.accessoryBar,
+                    let accessoryViewVerticalLayouts = self.accessoryViewVerticalLayouts,
+                    let accessoryViewHorizontalLayouts = self.accessoryViewHorizontalLayouts
+                {
+                    self.cropView.contentInsets = UIEdgeInsets(top: 5, left: 5 + self.toolbar.verticalWidth, bottom: 5, right: 5 + accessoryBar.verticalWidth)
+                    NSLayoutConstraint.deactivate(accessoryViewHorizontalLayouts)
+                    NSLayoutConstraint.activate(accessoryViewVerticalLayouts)
+                }
+                else {
+                    self.cropView.contentInsets = UIEdgeInsets(top: 5, left: 5 + self.toolbar.verticalWidth, bottom: 5, right: 5)
+                }
+            }
+            else
+            {
+                if
+                    let accessoryBar = self.accessoryBar,
+                    let accessoryViewVerticalLayouts = self.accessoryViewVerticalLayouts,
+                    let accessoryViewHorizontalLayouts = self.accessoryViewHorizontalLayouts
+                {
+                    NSLayoutConstraint.deactivate(accessoryViewVerticalLayouts)
+                    NSLayoutConstraint.activate(accessoryViewHorizontalLayouts)
+                    self.cropView.contentInsets = UIEdgeInsets(top: 5 + self.toolbar.horizontalHeight, left: 5, bottom: 5 + accessoryBar.horizontalHeight, right: 5)
+                }
+                else {
+                    self.cropView.contentInsets = UIEdgeInsets(top: 5 + self.toolbar.horizontalHeight, left: 5, bottom: 5, right: 5)
+                }
+            }
+            self.view.layoutIfNeeded()
+            accessoryview.isHidden = true
+            self.view.isUserInteractionEnabled = false
+            UIView.animate(withDuration: 0.5, animations: {
+                [weak self] in
+                guard let self = self else {return}
+                accessoryview.isHidden = false
+
+                self.cropView.apsectScaleFitCroppedImage(animated: true)
+            }, completion: {
+                [weak self] finished in
+                guard let self = self else {return}
+                self.view.isUserInteractionEnabled = true
+            })
             return
+        }
+
+        toolbar.hiddenAccessoryView = {
+            [weak self] in
+            guard
+                let self = self,
+                let accessoryBar = self.accessoryBar
+            else {return}
+            self.view.isUserInteractionEnabled = false
+            UIView.animate(withDuration: 0.5, animations: {
+                [weak self] in
+                guard
+                    let self = self
+                else {return}
+                accessoryBar.isHidden = true
+                if self.view.bounds.width > self.view.bounds.height {
+                    self.cropView.contentInsets = UIEdgeInsets(top: 5, left: 5 + self.toolbar.verticalWidth, bottom: 5, right: 5)
+                }
+                else
+                {
+                    self.cropView.contentInsets = UIEdgeInsets(top: 5 + self.toolbar.horizontalHeight, left: 5, bottom: 5, right: 5)
+                }
+                self.cropView.apsectScaleFitCroppedImage(animated: true)
+            }, completion: {
+                [weak self] finished in
+                accessoryBar.removeFromSuperview()
+                self?.accessoryViewHorizontalLayouts = nil
+                self?.accessoryViewHorizontalLayouts = nil
+                self?.view.isUserInteractionEnabled = true
+            })
         }
 
         toolbar.doneTapped = {
@@ -168,18 +259,7 @@ public final class EZCropController : UIViewController {
 
 
     public override func viewDidLayoutSubviews() {
-        if self.view.bounds.width > self.view.bounds.height {
-            cropView.contentInsets = UIEdgeInsets(top: 5, left: 5 + self.toolbar.verticalWidth, bottom: 5, right: 5)
-            NSLayoutConstraint.deactivate(self.toolbarHorizontalLayouts)
-            NSLayoutConstraint.activate(self.toolbarVerticalLayouts)
-        }
-        else
-        {
-            cropView.contentInsets = UIEdgeInsets(top: 5 + self.toolbar.horizontalHeight, left: 5, bottom: 5, right: 5)
-            NSLayoutConstraint.deactivate(self.toolbarVerticalLayouts)
-            NSLayoutConstraint.activate(self.toolbarHorizontalLayouts)
-
-        }
+        self.layoutViews()
         super.viewDidLayoutSubviews()
     }
 
@@ -204,6 +284,42 @@ public final class EZCropController : UIViewController {
         UIDevice.current
           .setValue(self.preferredInterfaceOrientationForPresentation.rawValue,
                     forKey: "orientation")  
+    }
+
+    private func layoutViews(){
+        if self.view.bounds.width > self.view.bounds.height {
+            NSLayoutConstraint.deactivate(self.toolbarHorizontalLayouts)
+            NSLayoutConstraint.activate(self.toolbarVerticalLayouts)
+            if
+                let accessoryBar = self.accessoryBar,
+                let accessoryViewVerticalLayouts = self.accessoryViewVerticalLayouts,
+                let accessoryViewHorizontalLayouts = self.accessoryViewHorizontalLayouts
+            {
+                cropView.contentInsets = UIEdgeInsets(top: 5, left: 5 + self.toolbar.verticalWidth, bottom: 5, right: 5 + accessoryBar.verticalWidth)
+                NSLayoutConstraint.deactivate(accessoryViewHorizontalLayouts)
+                NSLayoutConstraint.activate(accessoryViewVerticalLayouts)
+            }
+            else {
+                cropView.contentInsets = UIEdgeInsets(top: 5, left: 5 + self.toolbar.verticalWidth, bottom: 5, right: 5)
+            }
+        }
+        else
+        {
+            NSLayoutConstraint.deactivate(self.toolbarVerticalLayouts)
+            NSLayoutConstraint.activate(self.toolbarHorizontalLayouts)
+            if
+                let accessoryBar = self.accessoryBar,
+                let accessoryViewVerticalLayouts = self.accessoryViewVerticalLayouts,
+                let accessoryViewHorizontalLayouts = self.accessoryViewHorizontalLayouts
+            {
+                NSLayoutConstraint.deactivate(accessoryViewVerticalLayouts)
+                NSLayoutConstraint.activate(accessoryViewHorizontalLayouts)
+                cropView.contentInsets = UIEdgeInsets(top: 5 + self.toolbar.horizontalHeight, left: 5, bottom: 5 + accessoryBar.horizontalHeight, right: 5)
+            }
+            else {
+                cropView.contentInsets = UIEdgeInsets(top: 5 + self.toolbar.horizontalHeight, left: 5, bottom: 5, right: 5)
+            }
+        }
     }
 
     @objc func cancel(){

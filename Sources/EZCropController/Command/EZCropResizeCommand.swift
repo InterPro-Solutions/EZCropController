@@ -63,8 +63,6 @@ internal final class EZCropResizeCommand : CommandProtocol {
             }
         }
         let locationInOverLayView = gesture.location(in: self.cropView.overlay)
-        //var locationInImageView = gesture.location(in: self.cropView.backgroundImageView)
-
 
         if
             self.workingGesture == nil,
