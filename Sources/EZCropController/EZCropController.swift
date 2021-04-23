@@ -110,7 +110,8 @@ public final class EZCropController : UIViewController {
                 let self = self,
                 self.commandProcessor.ongoingCommand == nil
             else {return}
-            return
+
+            self.commandProcessor.execute(event: .reset, params: (nil,nil))
         }
 
         toolbar.rotatedButtonTapped = {
@@ -237,6 +238,8 @@ public final class EZCropController : UIViewController {
             else {return}
             self.commandProcessor.execute(event: .ratio, params: (nil,["ratio":ratio]))
         }
+
+
         NSLayoutConstraint.activate([
             self.cropView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.cropView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),

@@ -87,6 +87,8 @@ internal class EZCropProcessor : NSObject {
             command = EZCropRotationCommand(cropView: self.cropView!, processor: self)
         case .ratio:
             command = EZCropRatioCommand(cropView: self.cropView!, processor: self)
+        case .reset:
+            command = EZCropResetCommand(cropView: self.cropView!, processor: self)
         case .touchOnCropScrollView:
             self.setRotateCropViewWithOrientationEnable(false)
             return

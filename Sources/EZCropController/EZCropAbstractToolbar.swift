@@ -26,6 +26,7 @@ open class EZCropAbstractToolbar : UIView {
     @objc public internal(set) var verticalLayouts      = [NSLayoutConstraint]()
     @objc public internal(set) var horizontalLayouts    = [NSLayoutConstraint]()
 
+    private var token : NSKeyValueObservation?
     internal var processor: EZCropProcessor {
         return self._processor
     }
@@ -88,6 +89,10 @@ open class EZCropAbstractToolbar : UIView {
         super.layoutSubviews()
     }
 
+    open func couldReset(_ resetable:Bool){
+
+    }
+
     private func setLayoutStyle(_ style:EZCropLayoutStyle){
         if
             let currentStyle = self.currentStyle,
@@ -118,7 +123,10 @@ open class EZCropAbstractToolbar : UIView {
         self._backgroundView.removeFromSuperview()
         self.privateBackgroundViewVerticalLayouts.removeAll()
         self.privateBackgroundViewHorizontalLayouts.removeAll()
-        guard let superview = newSuperview else {return}
+        guard let superview = newSuperview else {
+            self.token?.invalidate()
+            return
+        }
         self.addSubview(self._backgroundView)
         self.bringSubviewToFront(self._containerView)
         self.privateBackgroundViewHorizontalLayouts = [
@@ -133,5 +141,13 @@ open class EZCropAbstractToolbar : UIView {
             self._backgroundView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
             self._backgroundView.topAnchor.constraint(equalTo: superview.topAnchor),
         ]
+        self.token = self.processor.cropView.observe(\.imageCropFrame, options: .new, changeHandler: {
+            [weak self] cropView, value in
+            guard
+                let self = self,
+                let newFrame = value.newValue
+            else {return}
+            self.couldReset(!newFrame.equalTo(CGRect(origin: .zero, size: cropView.imageSize)))
+        })
     }
 }

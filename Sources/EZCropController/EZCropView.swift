@@ -19,13 +19,10 @@ public final class EZCropView : UIView {
 
     //MARK: public computed properties
 
-    @objc public var imageCropFrame : CGRect {
+    @objc dynamic public var imageCropFrame : CGRect {
         set {
             if stopUpdateCropFrame == false{
                 self._imageCropFrame = newValue
-                #if DEBUG
-                //print("\(newValue)")
-                #endif
             }
         }
         get {

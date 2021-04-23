@@ -69,6 +69,7 @@ internal enum EZCropEvent {
     case resize
     case rotate
     case ratio
+    case reset
     case touchOnCropScrollView
     case touchOffCropScrollView
     case noInteractionAwhile

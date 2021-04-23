@@ -14,6 +14,9 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
     @objc override var verticalWidth : CGFloat {
         60
     }
+
+    private var resetButton : UIButton!
+
     internal override func containerView() -> UIView {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +26,7 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(cancelButton)
 
-        let resetButton = UIButton(type:.system)
+        resetButton = UIButton(type:.system)
         resetButton.isHidden = true
         resetButton.setTitle("Reset", for: .normal)
         resetButton.addTarget(self, action: #selector(reset), for: .touchUpInside)
@@ -114,6 +117,10 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
         return containerView
     }
 
+    override func couldReset(_ resetable: Bool) {
+        self.resetButton.isHidden = !resetable
+    }
+
     @objc internal  func cancelEdit(){
         self.cancelTapped?()
     }
@@ -139,100 +146,6 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
             sender.isSelected = false
             self.hiddenAccessoryView?()
         }
-
-        /*let croppedRect = self._processor.cropView.imageCropFrame
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        if croppedRect.width < croppedRect.height{
-            alert.addAction(UIAlertAction(title: "Square", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(1)
-            }))
-
-            alert.addAction(UIAlertAction(title: "9:16", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(9/16.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "8:10", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(8/10.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "5:7", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(5/7.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "3:4", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(3/4.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "3:5", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(3/5.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "2:3", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(2/3.0)
-            }))
-        }
-        else {
-            alert.addAction(UIAlertAction(title: "Square", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(1)
-            }))
-
-            alert.addAction(UIAlertAction(title: "16:9", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(16/9.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "10:8", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(10/8.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "7:5", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(7/5.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "4:3", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(4/3.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "5:3", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(5/3.0)
-            }))
-
-            alert.addAction(UIAlertAction(title: "3:2", style: .default, handler: {
-                [weak self] action in
-                guard let self = self else {return}
-                self.setRatio?(3/2.0)
-            }))
-        }
-
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.cropController.present(alert, animated: true, completion: nil)*/
-       /* let view = UIView()
-        self.showAccessoryView?(view)*/
     }
 
     @objc internal  func reset(){
