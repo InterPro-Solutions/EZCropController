@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  EZCropUtilities.swift
 //  
 //
 //  Created by Xiang Li on 3/26/21.
@@ -7,26 +7,6 @@
 
 import Foundation
 import UIKit
-
-/*internal extension UIView {
-
-    func asImage() -> UIImage? {
-        if #available(iOS 10.0, *) {
-            let renderer = UIGraphicsImageRenderer(bounds: bounds)
-            return renderer.image { rendererContext in
-                layer.render(in: rendererContext.cgContext)
-            }
-        } else {
-            UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.isOpaque, 0.0)
-            defer { UIGraphicsEndImageContext() }
-            guard let currentContext = UIGraphicsGetCurrentContext() else {
-                return nil
-            }
-            self.layer.render(in: currentContext)
-            return UIGraphicsGetImageFromCurrentImageContext()
-        }
-    }
-}*/
 
 internal extension UIImage {
 

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  EZCropProcessor.swift
 //  
 //
 //  Created by Xiang Li on 3/31/21.

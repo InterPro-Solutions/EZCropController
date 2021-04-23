@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  EZCropResizeCommand.swift
 //  
 //
 //  Created by Xiang Li on 3/26/21.

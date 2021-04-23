@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  EZCropController.swift
 //  
 //
 //  Created by Xiang Li on 3/25/21.

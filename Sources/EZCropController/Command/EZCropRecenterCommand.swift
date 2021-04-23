@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  EZCropRecenterCommand.swift
 //  
 //
 //  Created by Xiang Li on 4/5/21.
