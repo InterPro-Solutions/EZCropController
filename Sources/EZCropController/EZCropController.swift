@@ -50,7 +50,9 @@ public final class EZCropController : UIViewController {
     public override var shouldAutorotate: Bool {
         return commandProcessor.isRotateCropViewWithOrientationEnable
     }
-
+    public override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
     /**
      Initializes a new EZCropController with the provide image
