@@ -25,5 +25,6 @@ let package = Package(
         .testTarget(
             name: "EZCropControllerTests",
             dependencies: ["EZCropController"]),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
