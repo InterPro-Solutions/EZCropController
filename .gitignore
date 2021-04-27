@@ -9,3 +9,4 @@ EZCropExample/EZCropExample.xcodeproj/project.xcworkspace/xcshareddata/IDEWorksp
 *.xcscheme
 /EZCropExample/Build
 /EZCropExample/DerivedData
+.swiftpm/
