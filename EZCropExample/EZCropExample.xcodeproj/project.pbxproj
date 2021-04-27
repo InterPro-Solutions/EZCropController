@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		585CE52F263793A900005044 /* EZCropExample_OCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 585CE52E263793A900005044 /* EZCropExample_OCTests.m */; };
+		585CE53D2637950E00005044 /* EZCropExample_SwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585CE53C2637950E00005044 /* EZCropExample_SwiftTests.swift */; };
 		58924A80261FD77D00A97E8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924A7F261FD77D00A97E8A /* AppDelegate.swift */; };
 		58924A82261FD77D00A97E8A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924A81261FD77D00A97E8A /* SceneDelegate.swift */; };
 		58924A84261FD77D00A97E8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58924A83261FD77D00A97E8A /* ViewController.swift */; };
@@ -24,7 +26,30 @@
 		58E3DAEC261FF8AE0090C087 /* Main_OC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58E3DAEB261FF8AE0090C087 /* Main_OC.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		585CE531263793A900005044 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 58924A74261FD77D00A97E8A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 58924A9D261FF1A400A97E8A;
+			remoteInfo = EZCropExample_OC;
+		};
+		585CE53F2637950E00005044 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 58924A74261FD77D00A97E8A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 58924A7B261FD77D00A97E8A;
+			remoteInfo = EZCropExample_Swift;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		585CE52C263793A900005044 /* EZCropExample_OCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZCropExample_OCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		585CE52E263793A900005044 /* EZCropExample_OCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EZCropExample_OCTests.m; sourceTree = "<group>"; };
+		585CE530263793A900005044 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		585CE53A2637950E00005044 /* EZCropExample_SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZCropExample_SwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		585CE53C2637950E00005044 /* EZCropExample_SwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZCropExample_SwiftTests.swift; sourceTree = "<group>"; };
+		585CE53E2637950E00005044 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58924A7C261FD77D00A97E8A /* EZCropExample_Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZCropExample_Swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58924A7F261FD77D00A97E8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		58924A81261FD77D00A97E8A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +68,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		585CE529263793A900005044 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		585CE5372637950E00005044 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58924A79261FD77D00A97E8A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,11 +101,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		585CE52D263793A900005044 /* EZCropExample_OCTests */ = {
+			isa = PBXGroup;
+			children = (
+				585CE52E263793A900005044 /* EZCropExample_OCTests.m */,
+				585CE530263793A900005044 /* Info.plist */,
+			);
+			path = EZCropExample_OCTests;
+			sourceTree = "<group>";
+		};
+		585CE53B2637950E00005044 /* EZCropExample_SwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				585CE53C2637950E00005044 /* EZCropExample_SwiftTests.swift */,
+				585CE53E2637950E00005044 /* Info.plist */,
+			);
+			path = EZCropExample_SwiftTests;
+			sourceTree = "<group>";
+		};
 		58924A73261FD77D00A97E8A = {
 			isa = PBXGroup;
 			children = (
 				58924A94261FD79300A97E8A /* EZCropController */,
 				58924A7E261FD77D00A97E8A /* EZCropExample */,
+				585CE52D263793A900005044 /* EZCropExample_OCTests */,
+				585CE53B2637950E00005044 /* EZCropExample_SwiftTests */,
 				58924A7D261FD77D00A97E8A /* Products */,
 				58924A96261FEB2800A97E8A /* Frameworks */,
 			);
@@ -77,6 +136,8 @@
 			children = (
 				58924A7C261FD77D00A97E8A /* EZCropExample_Swift.app */,
 				58924AAC261FF1A400A97E8A /* EZCropExample_OC.app */,
+				585CE52C263793A900005044 /* EZCropExample_OCTests.xctest */,
+				585CE53A2637950E00005044 /* EZCropExample_SwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +187,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		585CE52B263793A900005044 /* EZCropExample_OCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 585CE535263793A900005044 /* Build configuration list for PBXNativeTarget "EZCropExample_OCTests" */;
+			buildPhases = (
+				585CE528263793A900005044 /* Sources */,
+				585CE529263793A900005044 /* Frameworks */,
+				585CE52A263793A900005044 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				585CE532263793A900005044 /* PBXTargetDependency */,
+			);
+			name = EZCropExample_OCTests;
+			productName = EZCropExample_OCTests;
+			productReference = 585CE52C263793A900005044 /* EZCropExample_OCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		585CE5392637950E00005044 /* EZCropExample_SwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 585CE5412637950E00005044 /* Build configuration list for PBXNativeTarget "EZCropExample_SwiftTests" */;
+			buildPhases = (
+				585CE5362637950E00005044 /* Sources */,
+				585CE5372637950E00005044 /* Frameworks */,
+				585CE5382637950E00005044 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				585CE5402637950E00005044 /* PBXTargetDependency */,
+			);
+			name = EZCropExample_SwiftTests;
+			productName = EZCropExample_SwiftTests;
+			productReference = 585CE53A2637950E00005044 /* EZCropExample_SwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		58924A7B261FD77D00A97E8A /* EZCropExample_Swift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58924A90261FD77E00A97E8A /* Build configuration list for PBXNativeTarget "EZCropExample_Swift" */;
@@ -172,9 +269,17 @@
 		58924A74261FD77D00A97E8A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					585CE52B263793A900005044 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 58924A9D261FF1A400A97E8A;
+					};
+					585CE5392637950E00005044 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 58924A7B261FD77D00A97E8A;
+					};
 					58924A7B261FD77D00A97E8A = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -198,11 +303,27 @@
 			targets = (
 				58924A7B261FD77D00A97E8A /* EZCropExample_Swift */,
 				58924A9D261FF1A400A97E8A /* EZCropExample_OC */,
+				585CE52B263793A900005044 /* EZCropExample_OCTests */,
+				585CE5392637950E00005044 /* EZCropExample_SwiftTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		585CE52A263793A900005044 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		585CE5382637950E00005044 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58924A7A261FD77D00A97E8A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,6 +348,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		585CE528263793A900005044 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				585CE52F263793A900005044 /* EZCropExample_OCTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		585CE5362637950E00005044 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				585CE53D2637950E00005044 /* EZCropExample_SwiftTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		58924A78261FD77D00A97E8A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -249,6 +386,21 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		585CE532263793A900005044 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 58924A9D261FF1A400A97E8A /* EZCropExample_OC */;
+			targetProxy = 585CE531263793A900005044 /* PBXContainerItemProxy */;
+		};
+		585CE5402637950E00005044 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 58924A7B261FD77D00A97E8A /* EZCropExample_Swift */;
+			targetProxy = 585CE53F2637950E00005044 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		58924A85261FD77D00A97E8A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -269,6 +421,86 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		585CE533263793A900005044 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = EZCropExample_OCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.interprosoft.EZCropExample-OCTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EZCropExample_OC.app/EZCropExample_OC";
+			};
+			name = Debug;
+		};
+		585CE534263793A900005044 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = EZCropExample_OCTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.interprosoft.EZCropExample-OCTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EZCropExample_OC.app/EZCropExample_OC";
+			};
+			name = Release;
+		};
+		585CE5422637950E00005044 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = EZCropExample_SwiftTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.interprosoft.EZCropExample-SwiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EZCropExample_Swift.app/EZCropExample_Swift";
+			};
+			name = Debug;
+		};
+		585CE5432637950E00005044 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = EZCropExample_SwiftTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.interprosoft.EZCropExample-SwiftTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EZCropExample_Swift.app/EZCropExample_Swift";
+			};
+			name = Release;
+		};
 		58924A8E261FD77E00A97E8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -473,6 +705,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		585CE535263793A900005044 /* Build configuration list for PBXNativeTarget "EZCropExample_OCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				585CE533263793A900005044 /* Debug */,
+				585CE534263793A900005044 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		585CE5412637950E00005044 /* Build configuration list for PBXNativeTarget "EZCropExample_SwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				585CE5422637950E00005044 /* Debug */,
+				585CE5432637950E00005044 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		58924A77261FD77D00A97E8A /* Build configuration list for PBXProject "EZCropExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
