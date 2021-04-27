@@ -4,7 +4,7 @@
 
 ## Requirements
 - iOS 11.0 or late
-- Swift 5.3
+- Swift 5
 - Swift package manager 5.3
 ## Installation
 
