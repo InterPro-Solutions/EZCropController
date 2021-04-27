@@ -9,13 +9,34 @@ import UIKit
 import Combine
 
 @objc public protocol EZCropControllerDelegate {
+    /**
+     Tells delegate that cancel button is tapped
+
+     - Parameters:
+        - cropViewController: The controller own this delegate
+     */
     @objc func cropViewControllerCancel(_ cropViewController: EZCropController)
-    @objc optional func cropViewController(_ cropViewController: EZCropController, didCropTo image: UIImage, with cropRect: CGRect, angle: EZCropRotation)
+
+    /**
+     Tells delegate that done button is tapped
+
+     - Parameters:
+        - cropViewController: The controller own this delegate
+        - image: cropped image
+        - cropRect: the cropRect in the original coordinate of original image
+        - angle: The direction of cropped image
+     */
+    @objc func cropViewController(_ cropViewController: EZCropController, didCropTo image: UIImage, with cropRect: CGRect, angle: EZCropRotation)
 }
 
 public final class EZCropController : UIViewController {
+    /// The delegate of EZCropController
     @objc public weak var delegate : EZCropControllerDelegate?
-    @objc public var cropView:EZCropView!
+
+    /// The inset constraints the edge that crop box could reach in the crop view.
+    @objc public var cropBoxInset : UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
+    private var cropView:EZCropView!
     
     private var toolbar : EZCropAbstractToolbar
     private let commandProcessor : EZCropProcessor
@@ -27,20 +48,28 @@ public final class EZCropController : UIViewController {
     private var accessoryViewHorizontalLayouts : [NSLayoutConstraint]?
 
     public override var shouldAutorotate: Bool {
-        print("\(commandProcessor.isRotateCropViewWithOrientationEnable)")
         return commandProcessor.isRotateCropViewWithOrientationEnable
     }
 
+    
+    /**
+     Initializes a new EZCropController with the provide image
 
-    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return UIApplication.shared.statusBarOrientation
-    }
-
-
+     - Parameters:
+        - image: The image need to be cropped
+     */
     @objc public convenience init(image:UIImage){
         self.init(image: image, toolbar: EZCropDefaultToolbar())
     }
 
+    /**
+     Initializes a new EZCropContoller with the provided `image` focus on a `cropRect`, then rotate image by `angle`
+
+     - Parameters:
+        - image: The image need to be cropped
+        - cropRect: The `CGRect` type indicate a cropbox in original coordinate `image`
+        - angle: The `EZCropRotation` type set the image direction
+     */
     @objc public convenience init(image:UIImage,
                             cropRect:CGRect,
                             angle:EZCropRotation)
@@ -50,6 +79,16 @@ public final class EZCropController : UIViewController {
         self.cropView.rotation = angle
     }
 
+    /**
+     Initializes a new EZCropContoller with the provided `image` focus on a `cropRect`, then rotate image by `angle`.
+     Set up a customized `EZCropAbstractToolbar`
+
+     - Parameters:
+        - image: The image need to be cropped
+        - cropRect: The `CGRect` type indicate a cropbox in original coordinate `image`
+        - angle: The `EZCropRotation` type set the image direction
+        - toolbar: The instance subclasses `EZCropAbstractToolbar`
+     */
     @objc public convenience init(image:UIImage,
                             cropRect:CGRect,
                             angle:EZCropRotation,
@@ -60,6 +99,14 @@ public final class EZCropController : UIViewController {
         self.cropView.rotation = angle
     }
 
+    /**
+     Initializes a new EZCropContoller with the provided `image`.
+     Set up a customized `EZCropAbstractToolbar`
+
+     - Parameters:
+        - image: The image need to be cropped
+        - toolbar: The instance subclasses `EZCropAbstractToolbar`
+     */
     @objc public init(image:UIImage,
                 toolbar : EZCropAbstractToolbar){
         self.commandProcessor = EZCropProcessor()
@@ -71,8 +118,7 @@ public final class EZCropController : UIViewController {
         cropView = EZCropView.instantiateByImage(orientedImage, commandProcessor: commandProcessor)
 
         self.commandProcessor.observeRotateCropViewWithOrientationEnable{
-            [weak self]isEnable in
-            guard let self = self else {return}
+            isEnable in
             if(isEnable == true){
                 EZCropController.attemptRotationToDeviceOrientation()
             }
@@ -98,21 +144,6 @@ public final class EZCropController : UIViewController {
         self.toolbar.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(self.toolbar)
 
-        toolbar.cancelTapped = {
-            [weak self] in
-            guard let self = self else {return}
-            self.delegate?.cropViewControllerCancel(self)
-        }
-
-        toolbar.resetButtonTapped = {
-            [weak self] in
-            guard
-                let self = self,
-                self.commandProcessor.ongoingCommand == nil
-            else {return}
-
-            self.commandProcessor.execute(event: .reset, params: (nil,nil))
-        }
 
         toolbar.rotatedButtonTapped = {
             [weak self] clockwise in
@@ -201,11 +232,11 @@ public final class EZCropController : UIViewController {
                 else {return}
                 accessoryBar.isHidden = true
                 if self.view.bounds.width > self.view.bounds.height {
-                    self.cropView.contentInsets = UIEdgeInsets(top: 5, left: 5 + self.toolbar.verticalWidth, bottom: 5, right: 5)
+                    self.cropView.contentInsets = UIEdgeInsets(top: self.cropBoxInset.top, left: self.cropBoxInset.left + self.toolbar.verticalWidth, bottom: self.cropBoxInset.bottom, right: self.cropBoxInset.right)
                 }
                 else
                 {
-                    self.cropView.contentInsets = UIEdgeInsets(top: 5 + self.toolbar.horizontalHeight, left: 5, bottom: 5, right: 5)
+                    self.cropView.contentInsets = UIEdgeInsets(top: self.cropBoxInset.top + self.toolbar.horizontalHeight, left: self.cropBoxInset.left, bottom: self.cropBoxInset.bottom, right: self.cropBoxInset.right)
                 }
                 self.cropView.apsectScaleFitCroppedImage(animated: true)
             }, completion: {
@@ -215,6 +246,41 @@ public final class EZCropController : UIViewController {
                 self?.accessoryViewHorizontalLayouts = nil
                 self?.view.isUserInteractionEnabled = true
             })
+        }
+
+        toolbar.setRatio = {
+            [weak self] ratio in
+            guard
+                let self = self,
+                self.commandProcessor.ongoingCommand == nil
+            else {return}
+            self.commandProcessor.execute(event: .ratio, params: (nil,["ratio":ratio]))
+        }
+
+        toolbar.lockCropBoxRatio = {
+            [weak self] lock in
+            guard
+                let self = self,
+                self.commandProcessor.ongoingCommand == nil
+            else {return}
+            self.commandProcessor.isLockAspectRatioEnable = lock
+        }
+
+        toolbar.cancelTapped = {
+            [weak self] in
+            guard let self = self else {return}
+            self.delegate?.cropViewControllerCancel(self)
+        }
+
+
+        toolbar.resetButtonTapped = {
+            [weak self] in
+            guard
+                let self = self,
+                self.commandProcessor.ongoingCommand == nil
+            else {return}
+
+            self.commandProcessor.execute(event: .reset, params: (nil,nil))
         }
 
         toolbar.doneTapped = {
@@ -228,16 +294,9 @@ public final class EZCropController : UIViewController {
                                               maxX: min(coordinate.maxX,max(rect.maxX,coordinate.minX)),
                                               maxY: min(coordinate.maxY,max(rect.maxY,coordinate.minY)))
             let croppedImage = EZCropUtilities.cropImage(image, inRect: clipedRect, thenRotate: self.cropView.rotation.angle)
-            self.delegate?.cropViewController?(self, didCropTo: croppedImage, with: clipedRect, angle: self.cropView.rotation)
+            self.delegate?.cropViewController(self, didCropTo: croppedImage, with: clipedRect, angle: self.cropView.rotation)
         }
-        toolbar.setRatio = {
-            [weak self] ratio in
-            guard
-                let self = self,
-                self.commandProcessor.ongoingCommand == nil
-            else {return}
-            self.commandProcessor.execute(event: .ratio, params: (nil,["ratio":ratio]))
-        }
+
 
 
         NSLayoutConstraint.activate([
@@ -298,12 +357,12 @@ public final class EZCropController : UIViewController {
                 let accessoryViewVerticalLayouts = self.accessoryViewVerticalLayouts,
                 let accessoryViewHorizontalLayouts = self.accessoryViewHorizontalLayouts
             {
-                cropView.contentInsets = UIEdgeInsets(top: 5, left: 5 + self.toolbar.verticalWidth, bottom: 5, right: 5 + accessoryBar.verticalWidth)
+                cropView.contentInsets = UIEdgeInsets(top: self.cropBoxInset.top, left: self.cropBoxInset.left + self.toolbar.verticalWidth, bottom: self.cropBoxInset.bottom, right: self.cropBoxInset.right + accessoryBar.verticalWidth)
                 NSLayoutConstraint.deactivate(accessoryViewHorizontalLayouts)
                 NSLayoutConstraint.activate(accessoryViewVerticalLayouts)
             }
             else {
-                cropView.contentInsets = UIEdgeInsets(top: 5, left: 5 + self.toolbar.verticalWidth, bottom: 5, right: 5)
+                cropView.contentInsets = UIEdgeInsets(top: self.cropBoxInset.top, left: self.cropBoxInset.left + self.toolbar.verticalWidth, bottom: self.cropBoxInset.bottom, right: self.cropBoxInset.right)
             }
         }
         else
@@ -317,10 +376,10 @@ public final class EZCropController : UIViewController {
             {
                 NSLayoutConstraint.deactivate(accessoryViewVerticalLayouts)
                 NSLayoutConstraint.activate(accessoryViewHorizontalLayouts)
-                cropView.contentInsets = UIEdgeInsets(top: 5 + self.toolbar.horizontalHeight, left: 5, bottom: 5 + accessoryBar.horizontalHeight, right: 5)
+                cropView.contentInsets = UIEdgeInsets(top: self.cropBoxInset.top + self.toolbar.horizontalHeight, left: self.cropBoxInset.left, bottom: self.cropBoxInset.bottom + accessoryBar.horizontalHeight, right: self.cropBoxInset.right)
             }
             else {
-                cropView.contentInsets = UIEdgeInsets(top: 5 + self.toolbar.horizontalHeight, left: 5, bottom: 5, right: 5)
+                cropView.contentInsets = UIEdgeInsets(top: self.cropBoxInset.top + self.toolbar.horizontalHeight, left: self.cropBoxInset.left, bottom: self.cropBoxInset.bottom, right: self.cropBoxInset.right)
             }
         }
     }

@@ -7,19 +7,19 @@
 
 import UIKit
 
-public final class EZCropView : UIView {
+internal final class EZCropView : UIView {
 
 
 
-    //MARK: public properties
-    @objc public var animating = false
-    @objc public var rotation : EZCropRotation = .zero
+    //MARK: internal properties
+    @objc internal var animating = false
+    @objc internal var rotation : EZCropRotation = .zero
 
 
 
-    //MARK: public computed properties
+    //MARK: internal computed properties
 
-    @objc dynamic public var imageCropFrame : CGRect {
+    @objc dynamic internal var imageCropFrame : CGRect {
         set {
             if stopUpdateCropFrame == false{
                 self._imageCropFrame = newValue
@@ -30,33 +30,33 @@ public final class EZCropView : UIView {
         }
     }
 
-    @objc public var image : UIImage {
+    @objc internal var image : UIImage {
         return _image
     }
 
-    @objc public var imageSize : CGSize {
+    @objc internal var imageSize : CGSize {
         return self._image.size
     }
 
-    @objc public var backgroundImageView : UIImageView{
+    @objc internal var backgroundImageView : UIImageView{
         return _backgroundImageView
     }
-    @objc public var backgroundContainer : UIScrollView{
+    @objc internal var backgroundContainer : UIScrollView{
         return self._backgroundContainer
     }
-    @objc public var foregroundContainer : EZCropForegroundView{
+    @objc internal var foregroundContainer : EZCropForegroundView{
         return self._foregroundContainer
     }
-    @objc public var blurView : UIView {
+    @objc internal var blurView : UIView {
         return self._blurView
     }
-    @objc public var overlay : EZCropOverlayView {
+    @objc internal var overlay : EZCropOverlayView {
         return self._overlay
     }
 
-    @objc public var contentInsets : UIEdgeInsets = .zero
+    @objc internal var contentInsets : UIEdgeInsets = .zero
 
-    @objc public var adjustedContentInsets : UIEdgeInsets {
+    @objc internal var adjustedContentInsets : UIEdgeInsets {
         let safeAreaInsets = self.safeAreaInsets
         return UIEdgeInsets(top: safeAreaInsets.top+self.contentInsets.top,
                             left: safeAreaInsets.left+self.contentInsets.left,

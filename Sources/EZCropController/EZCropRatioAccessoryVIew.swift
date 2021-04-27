@@ -135,7 +135,6 @@ internal class EZCropRatioAccessoryVIew : EZCropAbstractAccessoryView {
                 return
             })
         }
-
     }
 
     override func didMoveToSuperview() {

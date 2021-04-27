@@ -10,13 +10,13 @@ import UIKit
 
 
 
-public class EZCropForegroundView : UIView{
+internal class EZCropForegroundView : UIView{
 
     private var imageView = UIImageView()
     private var container = UIView()
     internal weak var cropView:EZCropView!
 
-    @objc public init(){
+    @objc init(){
         super.init(frame: .zero)
         self.imageView.contentMode = .scaleToFill
         self.container.clipsToBounds = true
@@ -32,13 +32,13 @@ public class EZCropForegroundView : UIView{
         self.imageView.image = image
     }
 
-    @objc public func setCropFrame(_ rect:CGRect){
+    @objc func setCropFrame(_ rect:CGRect){
         self.container.frame = rect
         self.syncImageViewFrame()
         self.layoutIfNeeded()
     }
 
-    @objc public func syncImageViewFrame(){
+    @objc func syncImageViewFrame(){
         let frame = self.cropView.backgroundContainer.convert(self.cropView.backgroundImageView.frame, to: self.container)
         self.imageView.frame = frame
     }

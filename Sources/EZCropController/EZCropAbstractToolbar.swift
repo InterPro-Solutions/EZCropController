@@ -8,23 +8,66 @@
 import UIKit
 
 open class EZCropAbstractToolbar : UIView {
+
+    /**
+     call back will rotate image
+     ```
+     //clockwise rotate
+     self.rotatedButtonTapped?(true)
+
+     //counterClockwise rotate
+     self.rotatedButtonTapped?(false)
+     ```
+     */
     @objc public internal(set) var rotatedButtonTapped  :((Bool)->Void)?
+
+    /**
+     call back pass a instance subclassing  `EZCropAbstractAccessoryView`, it will show in the CropController
+
+     ```
+     class MyAccessoryView : EZCropAbstractAccessoryView{
+     ...
+     }
+     let someAccessoryView = MyAccessoryView()
+     self.showAccessoryView?(someAccessoryView)
+     ```
+     */
     @objc public internal(set) var showAccessoryView    :((EZCropAbstractAccessoryView)->Void)?
+
+    /// call back for hiding accessoryview
     @objc public internal(set) var hiddenAccessoryView  :(()->Void)?
+
+    /// call back to change ratio of cropBox
     @objc public internal(set) var setRatio             :((CGFloat)->Void)?
+
+    /// call back to lock cropBox's aspect ratio
+    @objc public internal(set) var lockCropBoxRatio     :((Bool)->Void)?
+
+    /// call back to reset cropBox to image's orginal size
     @objc public internal(set) var resetButtonTapped    :(()->Void)?
+
+    /// call back to cancel crop controller
     @objc public internal(set) var cancelTapped         :(()->Void)?
+
+    /// call back to finish cropping
     @objc public internal(set) var doneTapped           :(()->Void)?
 
+    /**
+     The width of Toolbar when it is placed at Right of CropController
+     */
     @objc open var horizontalHeight : CGFloat {
         44
     }
+
+    /**
+     The width of Toolbar when it is placed at Right of CropController
+     */
     @objc open var verticalWidth : CGFloat {
         44
     }
-    @objc public internal(set) weak var cropController       : EZCropController!
-    @objc public internal(set) var verticalLayouts      = [NSLayoutConstraint]()
-    @objc public internal(set) var horizontalLayouts    = [NSLayoutConstraint]()
+    @objc weak var cropController       : EZCropController!
+    @objc var verticalLayouts      = [NSLayoutConstraint]()
+    @objc var horizontalLayouts    = [NSLayoutConstraint]()
 
     private var token : NSKeyValueObservation?
     internal var processor: EZCropProcessor {

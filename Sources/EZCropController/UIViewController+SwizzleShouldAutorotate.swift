@@ -20,6 +20,10 @@ public extension UIViewController {
         }
         return true
     }
+    /**
+     Call this Method will make the `shouldAutorotate` of `EZCropController` as the value of `rootViewController` of `UIWindow`
+     Call this method again to disable swizzling.
+     */
     @objc static func swizzleShouldAutorotate() {
         let orignal: Selector = #selector(getter: UIViewController.shouldAutorotate)
         let swizzled: Selector = #selector(swizzledShouldAutorotate)

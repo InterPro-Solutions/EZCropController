@@ -8,13 +8,6 @@
 import Foundation
 import UIKit
 
-/*public struct EZCropRatio {
-    public let width:CGFloat
-    public let height:CGFloat
-    public func reverse() -> EZCropRatio{
-        return EZCropRatio(width: self.height, height: self.width)
-    }
-}*/
 @objc public enum EZCropRotation : Int8 {
     case zero = 0
     case ninty

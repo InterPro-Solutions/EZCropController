@@ -9,7 +9,7 @@ import UIKit
 
 
 
-public class EZCropOverlayView : UIView, CAAnimationDelegate{
+internal class EZCropOverlayView : UIView, CAAnimationDelegate{
     public static let cornerLength : CGFloat = 22
     public static let cornerWidth : CGFloat = 4
     private var cropBoxLayer : EZCropOverlayLayer
@@ -24,7 +24,6 @@ public class EZCropOverlayView : UIView, CAAnimationDelegate{
         }
     }
     
-
     init(){
         self.cropBoxLayer = EZCropOverlayLayer()
         super.init(frame: .zero)
@@ -37,19 +36,19 @@ public class EZCropOverlayView : UIView, CAAnimationDelegate{
         fatalError("init(coder:) has not been implemented")
     }
 
-    public override func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         self.cropBoxLayer.frame = self.bounds
         self.cropBoxLayer.setNeedsDisplay()
     }
 
-    public override func draw(_ rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         super.draw(rect)
         self.cropBoxLayer.frame = self.bounds
         self.cropBoxLayer.setNeedsDisplay()
     }
 
-    @objc public func setCropBoxFrame(_ rect:CGRect, animated:Bool, completion:((Bool)->Void)? = nil ){
+    @objc func setCropBoxFrame(_ rect:CGRect, animated:Bool, completion:((Bool)->Void)? = nil ){
         if animated == true {
             let animation = CABasicAnimation(keyPath: #keyPath(EZCropOverlayLayer.cropBoxFrame))
             animation.fromValue = self.cropBoxFrame
@@ -89,14 +88,13 @@ fileprivate class EZCropOverlayLayer : CALayer{
         let leftBottomPoint = CGPoint(x: cropBoxFrame.minX-1, y: cropBoxFrame.maxY+1)
         ctx.setStrokeColor(UIColor.white.cgColor)
         ctx.setLineWidth(1)
-        //ctx.setLineDash(phase: 0, lengths: [10,5])
 
         ctx.strokeLineSegments(between: [leftTopPoint,rightTopPoint])
         ctx.strokeLineSegments(between: [rightTopPoint,rightBottomPoint])
         ctx.strokeLineSegments(between: [rightBottomPoint,leftBottomPoint])
         ctx.strokeLineSegments(between: [leftBottomPoint,leftTopPoint])
         ctx.setLineWidth(EZCropOverlayView.cornerWidth)
-        //ctx.setLineDash(phase: 0, lengths: [])
+
         //left Top corner
         ctx.move(to: CGPoint(x: cropBoxFrame.minX-halfWidth, y: cropBoxFrame.minY+cornerLength))
         ctx.addLine(to: CGPoint(x: cropBoxFrame.minX-halfWidth, y: cropBoxFrame.minY-lineWidth))
@@ -130,16 +128,4 @@ fileprivate class EZCropOverlayLayer : CALayer{
         }
         return super.needsDisplay(forKey: key)
     }
-
-    /*override func action(forKey event: String) -> CAAction? {
-        if event == #keyPath(EZCropOverlayLayer.cropBoxFrame) {
-            let anim = CABasicAnimation(keyPath: #keyPath(LoadingLayer.percentage))
-            anim.byValue = 0.01
-            anim.timingFunction = CAMediaTimingFunction(name: .linear)
-            anim.fromValue = presentation()?.percentage ?? 0
-            return anim
-        }
-        return super.action(forKey: event)
-    }*/
-
 }

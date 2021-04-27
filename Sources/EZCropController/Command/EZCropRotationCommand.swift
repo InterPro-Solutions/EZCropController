@@ -60,8 +60,6 @@ internal final class EZCropRotationCommand : CommandProtocol {
         NSLayoutConstraint.activate([
             leadingArchor,
             topArchor,
-            //imageView.centerXAnchor.constraint(equalTo: self.cropView.safeAreaLayoutGuide.centerXAnchor),
-            //imageView.centerYAnchor.constraint(equalTo: self.cropView.safeAreaLayoutGuide.centerYAnchor),
             heightArchor,
             widthArchor
         ])

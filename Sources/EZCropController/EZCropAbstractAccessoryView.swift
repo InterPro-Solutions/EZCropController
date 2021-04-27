@@ -9,19 +9,28 @@ import UIKit
 
 open class EZCropAbstractAccessoryView : UIView{
 
+    /**
+     The height of AccessoryView when it is placed at the bottom of CropController
+     */
     @objc open var horizontalHeight : CGFloat {
         44
     }
+
+    /**
+     The width of AccessoryView when it is placed at Right of CropController
+     */
     @objc open var verticalWidth : CGFloat {
         44
     }
-    @objc public internal(set) weak var cropController       : EZCropController!
-    @objc public internal(set) var verticalLayouts      = [NSLayoutConstraint]()
-    @objc public internal(set) var horizontalLayouts    = [NSLayoutConstraint]()
+
+    @objc var verticalLayouts      = [NSLayoutConstraint]()
+    @objc var horizontalLayouts    = [NSLayoutConstraint]()
 
     internal var processor: EZCropProcessor {
         return self._processor
     }
+
+    @objc weak var cropController       : EZCropController!
 
     internal weak var _processor : EZCropProcessor!
     private var privateToolbarHeightForHorizontal : NSLayoutConstraint!
@@ -57,10 +66,22 @@ open class EZCropAbstractAccessoryView : UIView{
         fatalError("Please init() as designated initalizer")
     }
 
+    /**
+     Create container has all of the `UIControl`s of AccessoryView, it must be overrided.
+     Please do not call this method manually.
+
+     - Returns: A `UIView` will be put on Top of AccessoryView on z-axis
+     */
     open func containerView() -> UIView {
         fatalError("Please subclass EZCropAbstractToolbar and override \"containerView()\"")
     }
 
+    /**
+     Create backgroundView of AccessoryView, it is optional overrided method.
+     Please do not call this method manually.
+
+     - Returns: A `UIView` will be put at the bottom of AccessoryView on z-axis
+     */
     open func backgroundView() -> UIView{
         let view = UIVisualEffectView()
         view.effect = UIBlurEffect(style: .dark)
