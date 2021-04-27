@@ -1,6 +1,6 @@
 # EZCropController
 
-**EZCropController** is designed for cropping `UIImage` and try to edit images in the same interactive way that **"Photos"** are in the system
+**EZCropController** is designed for cropping `UIImage` and try to edit images in the same interactive way that **"Photos"** in the system
 
 ## Requirements
 - iOS 11.0 or late
