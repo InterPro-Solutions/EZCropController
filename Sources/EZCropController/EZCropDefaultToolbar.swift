@@ -143,7 +143,7 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
             self.showAccessoryView?(ratioView)
         }
         else {
-            self.processor.isLockAspectRatioEnable = true
+            self.processor.isLockAspectRatioEnable = false
             sender.isSelected = false
             self.hiddenAccessoryView?()
         }
