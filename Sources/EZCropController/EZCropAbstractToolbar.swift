@@ -69,7 +69,8 @@ open class EZCropAbstractToolbar : UIView {
     @objc var verticalLayouts      = [NSLayoutConstraint]()
     @objc var horizontalLayouts    = [NSLayoutConstraint]()
 
-    private var token : NSKeyValueObservation?
+    //private var token : NSKeyValueObservation?
+    private var observations = Set<NSKeyValueObservation>()
     internal var processor: EZCropProcessor {
         return self._processor
     }
@@ -167,7 +168,10 @@ open class EZCropAbstractToolbar : UIView {
         self.privateBackgroundViewVerticalLayouts.removeAll()
         self.privateBackgroundViewHorizontalLayouts.removeAll()
         guard let superview = newSuperview else {
-            self.token?.invalidate()
+            for token in self.observations {
+                token.invalidate()
+            }
+            self.observations.removeAll()
             return
         }
         self.addSubview(self._backgroundView)
@@ -184,13 +188,23 @@ open class EZCropAbstractToolbar : UIView {
             self._backgroundView.bottomAnchor.constraint(equalTo: superview.bottomAnchor),
             self._backgroundView.topAnchor.constraint(equalTo: superview.topAnchor),
         ]
-        self.token = self.processor.cropView.observe(\.imageCropFrame, options: .new, changeHandler: {
+        self.couldReset(self.processor.cropView.rotation != .zero || !self.processor.cropView.imageCropFrame.equalTo(CGRect(origin: .zero, size: self.processor.cropView.imageSize)))
+        let cropFrameObservation = self.processor.cropView.observe(\.imageCropFrame, options: .new, changeHandler: {
             [weak self] cropView, value in
             guard
                 let self = self,
                 let newFrame = value.newValue
             else {return}
-            self.couldReset(!newFrame.equalTo(CGRect(origin: .zero, size: cropView.imageSize)))
+            self.couldReset(!newFrame.equalTo(CGRect(origin: .zero, size: cropView.imageSize)) || cropView.rotation != .zero)
         })
+        self.observations.insert(cropFrameObservation)
+        let rotationObservation = self.processor.cropView.observe(\.rotation, options: .new, changeHandler: {
+            [weak self] cropView, value in
+            guard
+                let self = self
+            else {return}
+            self.couldReset(cropView.rotation != .zero || !cropView.imageCropFrame.equalTo(CGRect(origin: .zero, size: cropView.imageSize)))
+        })
+        self.observations.insert(rotationObservation )
     }
 }

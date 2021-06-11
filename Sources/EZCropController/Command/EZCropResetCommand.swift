@@ -29,7 +29,8 @@ internal final class EZCropResetCommand : CommandProtocol {
         }
         animating = true
 
-        self.cropView.imageCropFrame = CGRect(origin: .zero, size: self.cropView.imageSize) 
+        self.cropView.imageCropFrame = CGRect(origin: .zero, size: self.cropView.imageSize)
+        self.cropView.rotation = .zero
         UIView.animate(withDuration: 0.5, animations: {
             self.cropView.apsectScaleFitCroppedImage(animated: true)
         }, completion: {

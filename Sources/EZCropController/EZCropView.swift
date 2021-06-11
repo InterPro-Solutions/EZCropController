@@ -13,7 +13,7 @@ internal final class EZCropView : UIView {
 
     //MARK: internal properties
     @objc internal var animating = false
-    @objc internal var rotation : EZCropRotation = .zero
+    @objc dynamic internal var rotation : EZCropRotation = .zero
 
 
 
