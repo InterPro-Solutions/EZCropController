@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "EZCropController",
+    platforms: [.iOS(.v11)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -24,5 +25,6 @@ let package = Package(
         .testTarget(
             name: "EZCropControllerTests",
             dependencies: ["EZCropController"]),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
