@@ -55,11 +55,12 @@ internal class EZCropDefaultToolbar : EZCropAbstractToolbar {
         containerView.addSubview(rotateClockwiseButton)
 
         let ratioButton = UIButton(type:.system)
-        if #available(iOS 13.0, *) {
+        ratioButton.setImage(UIImage(named: "Aspectratio Fill",in: Bundle.module, compatibleWith: nil)!, for: .normal)
+        /*if #available(iOS 13.0, *) {
             ratioButton.setImage(UIImage(systemName: "aspectratio.fill"), for: .normal)
         } else {
             ratioButton.setImage(UIImage(named: "Aspectratio Fill",in: Bundle.module, compatibleWith: nil)!, for: .normal)
-        }
+        }*/
         ratioButton.addTarget(self, action: #selector(modifiedRatio), for: .touchUpInside)
         ratioButton.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(ratioButton)
