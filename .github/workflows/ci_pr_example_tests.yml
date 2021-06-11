@@ -1,0 +1,15 @@
+name: Run Example Tests
+
+on: pull_request
+
+jobs:
+  tests:
+    name: Run Example Tests
+    runs-on: macOS-latest
+    steps:
+    - name: Checkout the Git repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 10
+    - name: Run example tests
+      run: ./GithubActions/build.sh tests
