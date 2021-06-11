@@ -2,6 +2,9 @@
 
 **EZCropController** is designed for cropping `UIImage` and try to edit images in the same interactive way that **"Photos"** in the system
 
+[![Build Example](https://github.com/InterPro-Solutions/EZCropController/workflows/Build%20Example%20app/badge.svg)](https://github.com/InterPro-Solutions/EZCropController/actions?query=workflow%3A%22Build%20Example%20app%22)
+[![Run Example Tests](https://github.com/InterPro-Solutions/EZCropController/workflows/Run%20Example%20Tests/badge.svg)](https://github.com/InterPro-Solutions/EZCropController/actions?query=workflow%3A%22Run%20Example%20Tests%22)
+
 ![Portrait Orientation](./screenshot/portrait_record.gif)
 
 ![Landscape Orientation](./screenshot/landscape_record.gif)
