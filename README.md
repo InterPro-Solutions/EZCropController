@@ -2,8 +2,12 @@
 
 **EZCropController** is designed for cropping `UIImage` and try to edit images in the same interactive way that **"Photos"** in the system
 
+![Portrait Orientation](./screenshot/portrait_record.gif)
+
+![Landscape Orientation](./screenshot/landscape_record.gif)
+
 ## Requirements
-- iOS 11.0 or late
+- iOS 11.0 or later
 - Swift 5
 - Swift package manager 5.3
 ## Installation
